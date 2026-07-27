@@ -15,7 +15,7 @@
     }
   </style>
 </head>
-<body></body>
+<body>
   <script type="module">
     import Webamp from "https://unpkg.com/webamp@2.3.1/built/webamp.bundle.min.mjs";
 
@@ -31,13 +31,17 @@
     ];
 
     const container = document.createElement("div");
+    container.style.position = "absolute";
+    container.style.top = "0";
+    container.style.left = "0";
     container.style.width = "100%";
     container.style.height = "100%";
     document.body.appendChild(container);
 
     const webamp = new Webamp();
-    webamp.renderInto(container).then(() => {
+    webamp.renderWhenReady(container).then(() => {
       webamp.setTracksToPlay(tracks);
     });
   </script>
+</body>
 </html>
