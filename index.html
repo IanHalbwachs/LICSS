@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Webamp Player</title>
-  <script src="https://unpkg.com/webamp@2.0.0/bundle.webamp.min.js"></script>
   <style>
     html, body {
       margin: 0;
@@ -14,9 +13,9 @@
       background: #000;
     }
   </style>
-</head>
-<body>
-  <script>
+  <script type="module">
+    import Webamp from "https://unpkg.com/webamp@2.3.1/built/webamp.bundle.min.mjs";
+
     const tracks = [
       "1 lean into it.mp3",
       "2 lies.mp3",
@@ -52,5 +51,6 @@
 
     initPlayer();
   </script>
-</body>
+</head>
+<body></body>
 </html>
