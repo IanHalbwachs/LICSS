@@ -14,7 +14,7 @@
     }
   </style>
 </head>
-<body>
+<body></body>
   <script type="module">
     import Webamp from "https://unpkg.com/webamp@2.3.1/built/webamp.bundle.min.mjs";
 
@@ -30,6 +30,7 @@
     ];
 
     const container = document.createElement("div");
+    container.id = "webamp-mount";
     document.body.appendChild(container);
 
     const webamp = new Webamp();
@@ -37,5 +38,4 @@
       webamp.setTracksToPlay(tracks);
     });
   </script>
-</body>
 </html>
