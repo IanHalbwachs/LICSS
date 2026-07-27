@@ -13,6 +13,8 @@
       background: #000;
     }
   </style>
+</head>
+<body>
   <script type="module">
     import Webamp from "https://unpkg.com/webamp@2.3.1/built/webamp.bundle.min.mjs";
 
@@ -27,9 +29,13 @@
       { url: "8 toxic.mp3", defaultName: "Toxic" }
     ];
 
+    const container = document.createElement("div");
+    document.body.appendChild(container);
+
     const webamp = new Webamp();
-    webamp.setTracksToPlay(tracks);
+    webamp.renderInto(container).then(() => {
+      webamp.setTracksToPlay(tracks);
+    });
   </script>
-</head>
-<body></body>
+</body>
 </html>
