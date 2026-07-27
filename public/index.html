@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webamp Player</title>
+  <script src="https://unpkg.com/webamp@2.0.0/bundle.webamp.min.js"></script>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    const tracks = [
+      "1 lean into it.mp3",
+      "2 lies.mp3",
+      "3 positivity.mp3",
+      "4 cruel by design.mp3",
+      "5 sac max.mp3",
+      "6 strange magic.mp3",
+      "7 can't dance.mp3",
+      "8 toxic.mp3"
+    ];
+
+    const titles = [
+      "Lean Into It",
+      "Lies",
+      "Positivity",
+      "Cruel By Design",
+      "SAC Max",
+      "Strange Magic",
+      "Can't Dance",
+      "Toxic"
+    ];
+
+    async function initPlayer() {
+      const songs = await Promise.all(
+        tracks.map((url, i) =>
+          Webamp.Song.fromUrl({ url, title: titles[i] })
+        )
+      );
+
+      const webamp = new Webamp();
+      webamp.loadFromSongArray(songs);
+    }
+
+    initPlayer();
+  </script>
+</body>
+</html>
