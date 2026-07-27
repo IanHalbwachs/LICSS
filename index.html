@@ -13,9 +13,23 @@
       overflow: hidden;
       background: #000;
     }
+    #webamp-mount {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #webamp-mount .winamp-skin-container {
+      transform-origin: center center;
+    }
   </style>
 </head>
 <body>
+  <div id="webamp-mount"></div>
   <script type="module">
     import Webamp from "https://unpkg.com/webamp@2.3.1/built/webamp.bundle.min.mjs";
 
@@ -30,17 +44,30 @@
       { url: "8 toxic.mp3", defaultName: "Toxic" }
     ];
 
-    const container = document.createElement("div");
-    container.style.position = "absolute";
-    container.style.top = "0";
-    container.style.left = "0";
-    container.style.width = "100%";
-    container.style.height = "100%";
-    document.body.appendChild(container);
+    const mount = document.getElementById("webamp-mount");
 
     const webamp = new Webamp();
-    webamp.renderWhenReady(container).then(() => {
+    webamp.renderInto(mount).then(() => {
       webamp.setTracksToPlay(tracks);
+      fitToScreen();
+    });
+
+    function fitToScreen() {
+      // Webamp default skin size
+      const skinWidth = 564;
+      const skinHeight = 224;
+      const scale = Math.min(
+        window.innerWidth / skinWidth,
+        window.innerHeight / skinHeight
+      );
+      const el = mount.querySelector(".winamp-skin-container");
+      if (el) {
+        el.style.transform = `scale(${scale})`;
+      }
+    }
+
+    window.addEventListener("resize", () => {
+      setTimeout(fitToScreen, 100);
     });
   </script>
 </body>
